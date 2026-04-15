@@ -474,7 +474,7 @@ class Game:
     # ==============================================================
     def _draw_hud(self, surface):
         """绘制HUD —— 精美半透明面板"""
-        from utils import font_tiny, font_large
+        from src.utils import font_tiny, font_large
 
         # 背景面板（圆角效果通过嵌套矩形模拟）
         hud = pygame.Surface((285, 135), pygame.SRCALPHA)
@@ -559,7 +559,7 @@ class Game:
             # 箭头高光
             pygame.draw.line(surface, (255, 240, 150), (ax, ay - 25), (ax + 28, ay), 2)
             # 文字提示
-            from utils import font_large
+            from src.utils import font_large
             if font_large:
                 t = font_large.render(">>>", False, GOLD)
                 surface.blit(t, t.get_rect(center=(SCREEN_WIDTH - 55, ay - 45)))
@@ -1079,15 +1079,15 @@ class Game:
         # 小关清除提示
         if self.section_cleared and not self._is_boss_section():
             self._draw_arrow_hint(surface)
-            from utils import font_medium
+            from src.utils import font_medium
             if font_medium:
                 t = font_medium.render("敌人已清除！向右前进 →", False, GOLD)
                 surface.blit(t, t.get_rect(center=(SCREEN_WIDTH // 2, 60)))
 
     def draw_levelup_select(self, surface):
         """绘制升级选择界面 —— 3张卡牌选择"""
-        from utils import font_large, font_medium, font_small, font_tiny
-        from player import UPGRADE_POOL
+        from src.utils import font_large, font_medium, font_small, font_tiny
+        from src.player import UPGRADE_POOL
 
         # 背景：绘制游戏画面 + 暗色遮罩
         self._draw_scene(surface)
@@ -1202,7 +1202,7 @@ class Game:
 
     def draw_start(self, surface):
         """绘制开始界面 —— 精美像素风"""
-        from utils import font_large, font_medium, font_small
+        from src.utils import font_large, font_medium, font_small
 
         surface.fill(BG_START)
 
@@ -1259,7 +1259,7 @@ class Game:
     def draw_level_select(self, surface):
         """绘制选关界面"""
         import math as _math
-        from utils import font_large, font_medium, font_small
+        from src.utils import font_large, font_medium, font_small
 
         surface.fill((12, 12, 28))
         cx = SCREEN_WIDTH // 2
@@ -1627,7 +1627,7 @@ class Game:
     def draw_codex(self, surface):
         """绘制资料库列表页"""
         import math as _math
-        from utils import font_large, font_medium, font_small, font_tiny
+        from src.utils import font_large, font_medium, font_small, font_tiny
 
         surface.fill((20, 18, 28))
         cx = SCREEN_WIDTH // 2
@@ -1717,7 +1717,7 @@ class Game:
     def draw_codex_detail(self, surface):
         """绘制资料库详情页"""
         import math as _math
-        from utils import font_large, font_medium, font_small, font_tiny
+        from src.utils import font_large, font_medium, font_small, font_tiny
 
         surface.fill((20, 18, 28))
         cx = SCREEN_WIDTH // 2
@@ -1799,7 +1799,7 @@ class Game:
 
     def draw_settings(self, surface):
         """绘制设置界面 —— 精美版"""
-        from utils import font_large, font_medium, font_small
+        from src.utils import font_large, font_medium, font_small
 
         surface.fill(BG_SETTINGS)
         # 装饰线
@@ -1841,7 +1841,7 @@ class Game:
 
     def draw_paused(self, surface):
         """绘制暂停界面 —— 模糊遮罩+精美面板"""
-        from utils import font_large, font_medium
+        from src.utils import font_large, font_medium
 
         self.draw_playing(surface)
         overlay = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.SRCALPHA)
@@ -1868,7 +1868,7 @@ class Game:
 
     def draw_level_complete(self, surface):
         """绘制大关完成界面 —— 精美版"""
-        from utils import font_large, font_medium
+        from src.utils import font_large, font_medium
 
         surface.fill((10, 20, 35))
         cx = SCREEN_WIDTH // 2
@@ -1912,7 +1912,7 @@ class Game:
 
     def draw_gameover(self, surface):
         """绘制游戏结束界面 —— 精美版"""
-        from utils import font_large, font_medium
+        from src.utils import font_large, font_medium
 
         surface.fill((30, 10, 10))
         cx = SCREEN_WIDTH // 2
@@ -1951,7 +1951,7 @@ class Game:
 
     def draw_victory(self, surface):
         """绘制胜利界面 —— 精美版"""
-        from utils import font_large, font_medium
+        from src.utils import font_large, font_medium
 
         surface.fill((10, 10, 30))
         cx = SCREEN_WIDTH // 2

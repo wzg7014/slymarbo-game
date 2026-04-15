@@ -162,7 +162,7 @@ class Player:
 
     def shoot(self, mouse_x, mouse_y):
         """射击/攻击 —— 子弹朝鼠标光标方向飞"""
-        from utils import snd_shoot, snd_melee
+        from src.utils import snd_shoot, snd_melee
 
         cx = self.x + self.width / 2
         cy = self.y + self.height / 3
@@ -250,7 +250,7 @@ class Player:
 
     def take_damage(self, damage):
         """受到伤害"""
-        from utils import snd_hit
+        from src.utils import snd_hit
         if self.invincible > 0:
             return False
         # 护盾挡伤害
@@ -268,7 +268,7 @@ class Player:
 
     def gain_xp(self, amount):
         """获得经验值"""
-        from utils import snd_levelup
+        from src.utils import snd_levelup
         self.xp += amount
         new_level = self.xp // 100 + 1
         if new_level > self.level:
