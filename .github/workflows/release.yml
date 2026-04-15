@@ -1,0 +1,132 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install pygame pyinstaller
+
+      - name: Build Windows executable
+        run: |
+          pyinstaller build/slymarbo.spec --clean
+
+      - name: Rename output
+        run: |
+          mv dist/Slymarbo.exe dist/slymarbo-windows.exe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: dist/slymarbo-windows.exe
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install pygame pyinstaller
+
+      - name: Build macOS app
+        run: |
+          pyinstaller build/slymarbo.spec --clean
+
+      - name: Create zip archive
+        run: |
+          cd dist
+          zip -r slymarbo-macos.zip Slymarbo.app
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-build
+          path: dist/slymarbo-macos.zip
+
+  build-web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install pygame pygbag
+
+      - name: Create entry point
+        run: |
+          echo 'from src.main import main; main()' > src/__main__.py
+
+      - name: Build Web version
+        run: |
+          pygbag --build-name "Slymarbo" --width 1000 --height 700 src/
+
+      - name: Prepare output
+        run: |
+          mkdir -p web-output
+          cp -r build/web/* web-output/
+          cd web-output
+          zip -r slymarbo-web.zip .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: web-output/slymarbo-web.zip
+
+  release:
+    needs: [build-windows, build-macos, build-web]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            artifacts/windows-build/slymarbo-windows.exe
+            artifacts/macos-build/slymarbo-macos.zip
+            artifacts/web-build/slymarbo-web.zip
+          body: |
+            ## Slymarbo Game Release
+
+            ### 下载
+
+            | 平台 | 文件 |
+            |------|------|
+            | Windows | `slymarbo-windows.exe` |
+            | macOS | `slymarbo-macos.zip` |
+            | Web | `slymarbo-web.zip` |
+
+            ### Web 版部署
+
+            解压 `slymarbo-web.zip`，将内容上传到服务器静态目录即可。
