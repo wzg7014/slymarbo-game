@@ -4,12 +4,12 @@
 import pygame
 import random
 import time as time_module
-from constants import *
-from player import Player
-from enemies import Enemy, FlyingEnemy, TurretEnemy, RedBoss, BlueBoss, PurpleBoss, GreenBoss, GoldBoss
-from objects import Platform, Bullet, MeleeAttack, Item, Spike, ItemBox, LaserBeam, SpinAttack, GroundHand, PoisonCloud, PoisonPool, HitParticle
-from utils import (play_sound, snd_pickup, snd_gameover, snd_victory,
-                   font_large, font_medium, font_small, font_tiny)
+from src.constants import *
+from src.player import Player
+from src.enemies import Enemy, FlyingEnemy, TurretEnemy, RedBoss, BlueBoss, PurpleBoss, GreenBoss, GoldBoss
+from src.objects import Platform, Bullet, MeleeAttack, Item, Spike, ItemBox, LaserBeam, SpinAttack, GroundHand, PoisonCloud, PoisonPool, HitParticle
+from src.utils import (play_sound, snd_pickup, snd_gameover, snd_victory,
+                       font_large, font_medium, font_small, font_tiny)
 
 
 class Game:

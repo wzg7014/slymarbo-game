@@ -3,9 +3,9 @@
 """
 import pygame
 import sys
-from constants import *
-import utils
-from game import Game
+from src.constants import *
+from src import utils
+from src.game import Game
 
 
 def main():

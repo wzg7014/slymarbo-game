@@ -4,9 +4,9 @@
 import pygame
 import random
 import math
-from constants import *
-from objects import Bullet, SpinAttack, GroundHand, PoisonCloud, PoisonPool
-from utils import play_sound, snd_boss_hit, snd_kill, font_tiny
+from src.constants import *
+from src.objects import Bullet, SpinAttack, GroundHand, PoisonCloud, PoisonPool
+from src.utils import play_sound, snd_boss_hit, snd_kill, font_tiny
 
 
 # ============================================================

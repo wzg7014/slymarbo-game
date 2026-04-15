@@ -4,9 +4,9 @@
 import pygame
 import math
 import random
-from constants import *
-from objects import Bullet, MeleeAttack, LaserBeam
-from utils import play_sound
+from src.constants import *
+from src.objects import Bullet, MeleeAttack, LaserBeam
+from src.utils import play_sound
 
 # ============================================================
 # 升级项池定义

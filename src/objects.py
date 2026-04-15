@@ -4,8 +4,8 @@
 import pygame
 import math
 import random
-from constants import *
-from utils import font_tiny
+from src.constants import *
+from src.utils import font_tiny
 
 # ============================================================
 # 平台类
