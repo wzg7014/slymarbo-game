@@ -42,23 +42,10 @@ Thumbs.db
 highscore.dat
 
 # 构建输出
-dist/
-build/
 web/
 
 # PyInstaller
 *.spec.backup
 
-# Python
-__pycache__/
-*.pyc
-*.pyo
+# Python testing
 .pytest_cache/
-
-# IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-Thumbs.db
