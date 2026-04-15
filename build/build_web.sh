@@ -19,7 +19,7 @@ main()
 EOF
 
 # 使用 pygbag 构建
-pygbag --build-name "Slymarbo" --width 1000 --height 700 src/
+pygbag --width 1000 --height 700 src/
 
 # 移动输出到 web 目录
 mv build/web web/

@@ -48,14 +48,14 @@ jobs:
         run: |
           pip install pygame pyinstaller
 
-      - name: Build macOS app
+      - name: Build macOS executable
         run: |
           pyinstaller build/slymarbo.spec --clean
 
       - name: Create zip archive
         run: |
           cd dist
-          zip -r slymarbo-macos.zip Slymarbo.app
+          zip slymarbo-macos.zip Slymarbo
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -83,7 +83,7 @@ jobs:
 
       - name: Build Web version
         run: |
-          pygbag --build-name "Slymarbo" --width 1000 --height 700 src/
+          pygbag --width 1000 --height 700 src/
 
       - name: Prepare output
         run: |
