@@ -47,5 +47,8 @@ web/
 # PyInstaller
 *.spec.backup
 
+# Allow build scripts (but not build output)
+!build/
+
 # Python testing
 .pytest_cache/
