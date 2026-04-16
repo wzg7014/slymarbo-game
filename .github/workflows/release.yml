@@ -83,12 +83,12 @@ jobs:
 
       - name: Build Web version
         run: |
-          timeout 300 pygbag --no-server --width 1000 --height 700 src/ || true
+          pygbag --build --width 1000 --height 700 src/
 
       - name: Prepare output
         run: |
           mkdir -p web-output
-          cp -r build/web/* web-output/
+          cp -r src/build/web/* web-output/
           cd web-output
           zip -r slymarbo-web.zip .
 
