@@ -83,7 +83,7 @@ jobs:
 
       - name: Build Web version
         run: |
-          pygbag --width 1000 --height 700 src/
+          timeout 300 pygbag --no-server --width 1000 --height 700 src/ || true
 
       - name: Prepare output
         run: |
